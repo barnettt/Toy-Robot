@@ -33,8 +33,6 @@ public class RobotControllerTest {
 
     @Test
     public void shouldImplementRobotCommands() throws Exception {
-        robotCommander.clearCommand();
-
         robotCommander.getRobotDriver().execute(getCommands());
         assertThat(robotCommander.getRobotDriver().getRobot().getDirection(), is(FaceDirection.EAST));
         assertThat(robotCommander.getRobotDriver().getRobot().getPoint().getX(),is(1));
@@ -44,7 +42,6 @@ public class RobotControllerTest {
 
     @Test
     public void shouldScanAndRunCommands() throws Exception {
-        robotCommander.clearCommand();
         List<CommandObject> commands = robotCommander.getRobotCommandsToExecute(null);
 
         assertThat(commands, notNullValue());
