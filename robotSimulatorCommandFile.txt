@@ -1,0 +1,28 @@
+Place 0,0,NORTH
+move
+report
+move
+place 6,6,WEST
+move
+report
+Place 0,0,NORTH
+Left
+report
+place 1,2,east
+move
+move
+left
+move
+report
+place 6,6,EAST
+move
+report
+Place 0,0,SOUTHWEST
+move
+move
+report
+right
+move
+move
+report
+q
