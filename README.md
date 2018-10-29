@@ -1,6 +1,8 @@
 # Toy-Robot
 toy robot
 
+build te application with mvn clean install
+
 The simulation can be run with following command
 
 java -jar target/toy-robot-sim-1.0-SNAPSHOT.jar
