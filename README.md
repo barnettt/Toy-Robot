@@ -11,6 +11,6 @@ interactive mode can be run with the following command
 
 java -jar target/toy-robot-sim-1.0-SNAPSHOT.jar keyboard
 
-type q or exit to end the entries
+type q or exit to end command entries
 
 ctrl-c to stop spring boot
