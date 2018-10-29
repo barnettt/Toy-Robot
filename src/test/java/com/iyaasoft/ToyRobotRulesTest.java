@@ -28,7 +28,7 @@ public class ToyRobotRulesTest {
         robotDriver.turn(Command.LEFT);
         robotDriver.move();
 
-        doMoveAssertions(is(FaceDirection.WEST), is(0));
+        doMoveAssertions(is(FaceDirection.WEST), is(0),is(0));
 
     }
 
@@ -38,7 +38,7 @@ public class ToyRobotRulesTest {
         robotDriver.turn(Command.LEFT);
         robotDriver.move();
 
-        doMoveAssertions(is(FaceDirection.WEST), is(0));
+        doMoveAssertions(is(FaceDirection.WEST), is(0), is(0));
 
     }
 
@@ -49,7 +49,7 @@ public class ToyRobotRulesTest {
         robotDriver.turn(Command.RIGHT);
         robotDriver.move();
 
-        doMoveAssertions(is(FaceDirection.SOUTH), is(0));
+        doMoveAssertions(is(FaceDirection.SOUTH), is(0),is(0));
     }
 
     @Test
@@ -57,13 +57,15 @@ public class ToyRobotRulesTest {
         robotDriver.setLocation(2, 1, FaceDirection.EAST, Command.PLACE);
         robotDriver.turn(Command.RIGHT);
         robotDriver.move();
-        doMoveAssertions(is(FaceDirection.SOUTH), is(1));
+        robotDriver.move();
+        doMoveAssertions(is(FaceDirection.SOUTH), is(2),is(0));
 
     }
 
-    private void doMoveAssertions(final Matcher<FaceDirection> matcher, final Matcher<Integer> matcher2) {
+    private void doMoveAssertions(final Matcher<FaceDirection> matcher, final Matcher<Integer> matcher2, final Matcher<Integer> matcher3) {
         assertThat(robotDriver.getRobot().getDirection(), matcher);
         assertThat(robotDriver.getRobot().getPoint().getX(), matcher2);
+        assertThat(robotDriver.getRobot().getPoint().getY(), matcher3);
     }
 
     @Test
@@ -72,7 +74,7 @@ public class ToyRobotRulesTest {
         robotDriver.turn(Command.RIGHT);
         robotDriver.move();
 
-        doMoveAssertions(is(FaceDirection.EAST), is(1));
+        doMoveAssertions(is(FaceDirection.EAST), is(1), is(0));
 
     }
 

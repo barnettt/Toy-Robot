@@ -9,10 +9,10 @@ import com.iyaasoft.routes.Point;
 
 public class CommandObject {
 
+    List<String> validNumbers = new ArrayList<>();
     private Command action;
     private FaceDirection direction;
     private Point point;
-    List<String> validNumbers = new ArrayList<>();
 
     {
         for (int i = 0; i < 9; i++) {
@@ -74,7 +74,7 @@ public class CommandObject {
     }
 
     private boolean nullCheckValue(final String item) {
-        if(item == null || item == "") {
+        if (item == null || item == "") {
             return true;
         }
         return false;

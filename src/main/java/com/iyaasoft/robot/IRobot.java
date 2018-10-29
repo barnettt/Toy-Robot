@@ -30,18 +30,16 @@ public class IRobot {
         return command;
     }
 
+    public void setCommand(final Command command) {
+        this.command = command;
+    }
+
     public void clearCommand() {
         command = null;
         direction = null;
         point = null;
 
     }
-
-    public void setCommand(final Command command) {
-        this.command = command;
-    }
-
-
 
     public String report() {
 

@@ -27,6 +27,7 @@ public class ToyRobotLeftRightTest {
         driver.turn(Command.LEFT);
         assertThat(driver.getRobot().getCommand(), is(Command.LEFT));
         assertThat(driver.getRobot().getDirection(), is(FaceDirection.WEST));
+
     }
 
     @Test
@@ -47,7 +48,7 @@ public class ToyRobotLeftRightTest {
 
     @Test
     public void shouldTurnRobotRightWest() {
-        driver.setLocation(0, 1, FaceDirection.SOUTH, Command.PLACE);
+        driver.setLocation(0, 0, FaceDirection.SOUTH, Command.PLACE);
         driver.turn(Command.RIGHT);
         assertThat(driver.getRobot().getCommand(), is(Command.RIGHT));
         assertThat(driver.getRobot().getDirection(), is(FaceDirection.WEST));

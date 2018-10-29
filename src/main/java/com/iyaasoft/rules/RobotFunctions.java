@@ -18,36 +18,46 @@ public class RobotFunctions {
 
         if (p.getX() < 0) return p;
 
-        switch(fd.name()) {
-            case  "EAST" : p.setX(p.getX() + 1); break;
-            case  "WEST" : p.setX(p.getX() - 1); break;
-            case  "NORTH" : p.setX(p.getX() + 1); break;
-            case  "SOUTH" : p.setX(p.getX() - 1); break;
-            case  "SOUTHWEST" : p.setX(p.getX() + 1); break;
+        switch (fd.name()) {
+            case "EAST":
+                p.setX(p.getX() + 1);
+                break;
+            case "WEST":
+                p.setX(p.getX() - 1);
+                break;
+            case "NORTH":
+                p.setY(p.getY() + 1);
+                break;
+            case "SOUTH":
+                p.setY(p.getY() - 1);
+                break;
+            case "SOUTHWEST":
+                p.setY(p.getY() + 1);
+                break;
         }
         return p;
     };
 
     public static final BiFunction<String, String[], List<String>> splitStringFunction = (stringData, regex) -> {
 
-          List<String> result = new ArrayList();
-          String[] resultArray = null;
-          if(regex != null && regex.length > 0) {
-              resultArray = stringData.split(regex[0]);
-              String[] interMediate ;
-              if (regex.length > 1) {
-                  for (int i = 0; i < resultArray.length; i++) {
-                      if (resultArray[i].contains(regex[1])) {
-                          interMediate = resultArray[i].split(regex[1]);
-                          result.add(resultArray[0]);
-                          result.addAll(Arrays.asList(interMediate));
-                      }
-                  }
-              }
-          }
-          if(result.isEmpty() && resultArray != null){
-              result.addAll(Arrays.asList(resultArray));
-          }
+        List<String> result = new ArrayList();
+        String[] resultArray = null;
+        if (regex != null && regex.length > 0) {
+            resultArray = stringData.split(regex[0]);
+            String[] interMediate;
+            if (regex.length > 1) {
+                for (int i = 0; i < resultArray.length; i++) {
+                    if (resultArray[i].contains(regex[1])) {
+                        interMediate = resultArray[i].split(regex[1]);
+                        result.add(resultArray[0]);
+                        result.addAll(Arrays.asList(interMediate));
+                    }
+                }
+            }
+        }
+        if (result.isEmpty() && resultArray != null) {
+            result.addAll(Arrays.asList(resultArray));
+        }
 
         return result;
     };

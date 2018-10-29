@@ -7,9 +7,6 @@ import java.io.ByteArrayInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiFunction;
@@ -20,27 +17,20 @@ import com.iyaasoft.rules.RobotFunctions;
 import com.iyaasoft.scanner.RobotScanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.stereotype.Component;
 
 @Component
 public class RobotCommander {
 
+    private static final String PLACE_COMMAND = "Place";
+    private static final String END_OF_LINE = "\n";
+    private final String[] SPLIT_BY = new String[]{" ", ","};
     @Autowired
     RobotScanner scanner;
-
     @Autowired
     RobotDriver robotDriver;
-
     @Value("${fileName}")
     String fileName;
-
-    private final String[] SPLIT_BY = new String[]{" ",","};
-
-    private static final String PLACE_COMMAND = "Place";
-
-    private static final String END_OF_LINE = "\n";
-
     private BiFunction splitFunction = RobotFunctions.splitStringFunction;
 
     public List<String> readCommandInputFile(final String fileName) throws Exception {
@@ -59,7 +49,7 @@ public class RobotCommander {
 
         List<String> commands;
         if (keyBoardValue != null) {
-            commands = (List<String>)splitFunction.apply(keyBoardValue, new String[]{END_OF_LINE});
+            commands = (List<String>) splitFunction.apply(keyBoardValue, new String[]{END_OF_LINE});
         } else {
             commands = readCommandInputFile(fileName);
         }
@@ -97,32 +87,31 @@ public class RobotCommander {
                     CommandObject command = new CommandObject();
                     for (Object value : (List) item) {
 
-                        String val = removeEndLineCharFromString((String)value);
+                        String val = removeEndLineCharFromString((String) value);
 
                         if (PLACE_COMMAND.equalsIgnoreCase(val)) {
                             command.isAction(val, command);
                             count.getAndIncrement();
                         } else {
-                                if(count.get() > 0) {
-                                    command.isAction(val, command);
-                                    command.idDirection(val, command);
-                                    command.isInt(val, command);
-                                }
+                            if (count.get() > 0) {
+                                command.isAction(val, command);
+                                command.idDirection(val, command);
+                                command.isInt(val, command);
+                            }
                         }
                     }
                     commandsToBeExcuted.add(command);
                 });
     }
 
-    private String  removeEndLineCharFromString(String value) {
+    private String removeEndLineCharFromString(String value) {
         StringBuilder buff = new StringBuilder(value);
-        if(value.contains(END_OF_LINE)){
+        if (value.contains(END_OF_LINE)) {
             buff = new StringBuilder(value);
             buff.deleteCharAt(buff.indexOf(END_OF_LINE));
         }
         return buff.toString();
     }
-
 
 
     private ByteArrayInputStream getByteInputStream(String command) {

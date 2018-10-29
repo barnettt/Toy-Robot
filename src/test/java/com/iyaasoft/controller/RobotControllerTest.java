@@ -33,25 +33,24 @@ public class RobotControllerTest {
 
     @Test
     public void shouldImplementRobotCommands() throws Exception {
-        robotCommander.clearCommand();
 
         robotCommander.getRobotDriver().execute(getCommands());
         assertThat(robotCommander.getRobotDriver().getRobot().getDirection(), is(FaceDirection.EAST));
-        assertThat(robotCommander.getRobotDriver().getRobot().getPoint().getX(),is(1));
-        assertThat(robotCommander.getRobotDriver().getRobot().getPoint().getY(), is(0));
+        assertThat(robotCommander.getRobotDriver().getRobot().getPoint().getX(), is(0));
+        assertThat(robotCommander.getRobotDriver().getRobot().getPoint().getY(), is(1));
 
     }
 
     @Test
     public void shouldScanAndRunCommands() throws Exception {
-        robotCommander.clearCommand();
+
         List<CommandObject> commands = robotCommander.getRobotCommandsToExecute(null);
 
         assertThat(commands, notNullValue());
-        assertThat(commands, hasSize(28));
+        assertThat(commands, hasSize(30));
         assertThat(robotCommander.getRobotDriver().getRobot().getDirection(), is(FaceDirection.NORTH));
-        assertThat(robotCommander.getRobotDriver().getRobot().getPoint().getX(),is(4));
-        assertThat(robotCommander.getRobotDriver().getRobot().getPoint().getY(), is(0));
+        assertThat(robotCommander.getRobotDriver().getRobot().getPoint().getX(), is(0));
+        assertThat(robotCommander.getRobotDriver().getRobot().getPoint().getY(), is(4));
     }
 
     private List<CommandObject> getCommands() {

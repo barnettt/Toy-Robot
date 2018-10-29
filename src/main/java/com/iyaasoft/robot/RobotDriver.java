@@ -20,24 +20,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class RobotDriver {
 
+    public static Predicate<Command> isTurnCommand = RobotFunctions.isTurnCommand;
+    public static Predicate<Command> isReportCommand = RobotFunctions.isReportCommand;
+    public static Predicate<Command> isMoveCommand = RobotFunctions.isMoveCommand;
+    public static Predicate<Command> isPlaceCommand = RobotFunctions.isPlaceCommand;
     @Autowired
     IRobot robot;
-
     Predicate<Point> xyPredicate = RobotFunctions.xyPredicate;
-
     private Function<Command, FaceDirection> turnAndFace = (command) -> {
         Map<FaceDirection, FaceDirection> directions = ValidRouteMap.get(command);
         return directions.get(robot.getDirection());
     };
-
-    public static Predicate<Command> isTurnCommand = RobotFunctions.isTurnCommand;
-
-    public static Predicate<Command> isReportCommand = RobotFunctions.isReportCommand;
-
-    public static Predicate<Command> isMoveCommand = RobotFunctions.isMoveCommand;
-
-    public static Predicate<Command> isPlaceCommand = RobotFunctions.isPlaceCommand;
-
     private BiFunction<FaceDirection, Point, Point> moveInDirection = RobotFunctions.moveInDirection;
 
     public RobotDriver() {
@@ -48,6 +41,7 @@ public class RobotDriver {
 
         Point position = new Point(x, y);
         if (!xyPredicate.test(position)) {
+            getRobot().clearCommand();
             return false;
         }
         getRobot().setCommand(command);
@@ -64,7 +58,7 @@ public class RobotDriver {
 
         if (isMoveAllowed(getRobot().getCommand())) {
             Point copyOfPoint = new Point(getRobot().getPoint().getX(), getRobot().getPoint().getY());
-            Point newPoint = getRobot().getDirection() != null ?  moveInDirection.apply(getRobot().getDirection(), copyOfPoint) : null;
+            Point newPoint = getRobot().getDirection() != null ? moveInDirection.apply(getRobot().getDirection(), copyOfPoint) : null;
             if (newPoint != null && xyPredicate.test(newPoint)) {
                 getRobot().setPoint(newPoint);
             }
@@ -91,9 +85,9 @@ public class RobotDriver {
             } else if (command.getAction() != null && isTurnCommand.test(command.getAction())) {
                 turn(command.getAction());
             } else if (command.getAction() != null && isReportCommand.test(command.getAction())) {
-                if(getRobot().getDirection() != null) report();
+                if (getRobot().getDirection() != null) report();
             } else if (command.getAction() != null && isMoveCommand.test(command.getAction())) {
-                  move() ;
+                move();
             }
 
         });

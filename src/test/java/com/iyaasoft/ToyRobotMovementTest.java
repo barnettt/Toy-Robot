@@ -1,5 +1,6 @@
 package com.iyaasoft;
 
+import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -26,39 +27,51 @@ public class ToyRobotMovementTest {
     public void shouldMoveRobotAlongXCoordinate() {
         assertThat(driver.setLocation(0, 0, FaceDirection.SOUTHWEST, Command.PLACE), is(true));
         driver.move();
-        doPointAssertions(is(1), is(0));
+        doPointAssertions(is(0), is(1));
     }
 
     @Test
-    public void shouldMoveRobotAlongYCoordinate() {
-        assertThat(driver.setLocation(2, 2, FaceDirection.SOUTHWEST, Command.PLACE), is(true));
+    public void shouldIgnoreInvalidMoveAlongYCoordinate() {
+        assertThat(driver.setLocation(0, 5, FaceDirection.NORTH, Command.PLACE), is(true));
         driver.move();
-        doPointAssertions(is(3), is(2));
+        doPointAssertions(is(0), is(5));
     }
+
+    @Test
+    public void shouldIgnoreMoveInvalidYCoordinate() {
+        assertThat(driver.setLocation(0, 5, FaceDirection.SOUTHWEST, Command.PLACE), is(true));
+        driver.move();
+        doPointAssertions(is(0), is(5));
+    }
+
 
     @Test
     public void shouldIgnoreMoveInvalidXCoordinate() {
-        assertThat(driver.setLocation(5, 0, FaceDirection.SOUTHWEST, Command.PLACE), is(true));
-
+        assertThat(driver.setLocation(5, 0, FaceDirection.EAST, Command.PLACE), is(true));
         driver.move();
         doPointAssertions(is(5), is(0));
     }
 
-
     @Test
     public void shouldIgnoreMoveBeyondXLimitCoordinate() {
-        assertThat(driver.setLocation(5, 0, FaceDirection.SOUTHWEST, Command.PLACE), is(true));
+        assertThat(driver.setLocation(0, 0, FaceDirection.WEST, Command.PLACE), is(true));
         driver.move();
-        doPointAssertions(is(5), is(0));
+        doPointAssertions(is(0), is(0));
     }
 
     @Test
     public void shouldIgnoreMoveBeyondYLimitCoordinate() {
-        assertThat(driver.setLocation(5, 5, FaceDirection.SOUTHWEST, Command.PLACE), is(true));
+        assertThat(driver.setLocation(0, 0, FaceDirection.SOUTH, Command.PLACE), is(true));
         driver.move();
-        doPointAssertions(is(5), is(5));
+        doPointAssertions(is(0), is(0));
     }
 
+    @Test
+    public void shouldIgnoreMPlaceBeyondYLimitCoordinate() {
+        assertThat(driver.setLocation(6, 6, FaceDirection.SOUTH, Command.PLACE), is(false));
+        driver.move();
+        assertThat(driver.getRobot().getPoint(), nullValue() );
+    }
 
     private void doPointAssertions(final Matcher<Integer> xMatcher, final Matcher<Integer> yMatcher) {
         assertThat(driver.getRobot().getPoint().getX(), is(xMatcher));

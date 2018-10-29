@@ -1,3 +1,5 @@
+move
+right
 Place 0,0,NORTH
 move
 report
