@@ -37,6 +37,6 @@ public class XyZeroMovementRule implements ToyRobotRule {
 
     private boolean checkDirectionAndPoint(final FaceDirection newDirection, final Point point) {
 
-        return xPredicate.test(point.getX(), newDirection) || yPredicate.test(point.getX(), newDirection);
+        return xPredicate.test(point.getX(), newDirection) || yPredicate.test(point.getY(), newDirection);
     }
 }
