@@ -2,7 +2,11 @@ package com.iyaasoft.scanner;
 
 
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import com.iyaasoft.util.Utilities;
 
 public class RobotScanner {
 
@@ -22,18 +26,24 @@ public class RobotScanner {
     }
 
     private String getInputString() {
-
-        String input = "\n";
+        List<String> inputList = new ArrayList<>();
         while (scanner.hasNextLine()) {
             String read = scanner.nextLine();
 
-            if ("exit".equalsIgnoreCase(read) || "q".equalsIgnoreCase(read)) {
+            if ("exit".equalsIgnoreCase(Utilities.removeEndLineCharFromString(read))
+                    || "q".equalsIgnoreCase(Utilities.removeEndLineCharFromString(read)) ) {
                 break;
             }
-            input += "\n"+read.toUpperCase();
-            System.out.println("input : " + input);
+            inputList.add(read);
+            System.out.println("input : " + inputList);
         }
-        return input;
+        return convertToString(inputList);
+    }
+
+    private String convertToString(final List<String> inputList) {
+        final StringBuilder builder  = new StringBuilder();
+        inputList.forEach(entry ->   builder.append(entry+Utilities.END_OF_LINE));
+        return builder.toString();
     }
 
     public String getKeyboardInput() {

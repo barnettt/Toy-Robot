@@ -63,12 +63,12 @@ public class CommandObject {
         }
     }
 
-    public void idDirection(final String item, final CommandObject command) {
+    public void isDirection(final String item, final CommandObject command) {
         if (nullCheckValue(item)) return;
         List<String> directions = FaceDirection.getValuesAsList();
 
-        if (command.getDirection() == null && directions.contains(item)) {
-            command.setDirection(FaceDirection.valueOf(item));
+        if (command.getDirection() == null && directions.contains(item.toUpperCase())) {
+            command.setDirection(FaceDirection.valueOf(item.toUpperCase()));
         }
 
     }
@@ -83,8 +83,8 @@ public class CommandObject {
     public void isAction(final String item, final CommandObject command) {
         if (nullCheckValue(item)) return;
         List<String> commands = Command.getValuesAsList();
-        if (commands.contains(item) && command.getAction() == null) {
-            command.setAction(Command.valueOf(item));
+        if (commands.contains(item.toUpperCase()) && command.getAction() == null) {
+            command.setAction(Command.valueOf(item.toUpperCase()));
         }
     }
 
