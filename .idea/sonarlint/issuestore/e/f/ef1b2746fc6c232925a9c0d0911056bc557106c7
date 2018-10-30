@@ -1,0 +1,10 @@
+
+?squid:S1148V"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+Dsquid:S1604%"(Make this anonymous inner class a lambda(Û¾Ù¥øÿÿÿÿ
+Tsquid:S1172$"1Remove this unused method parameter "returnCode".(´ùä÷şÿÿÿÿ8Õƒƒéë,
+N
+squid:S106U"9Replace this use of System.out or System.err by a logger.(î‡d
+Bsquid:S24405"+Remove this instantiation of "ValidRoutes".(ÛÅ‡¢
+Qsquid:S2209%"5Change this instance-reference to a static reference.(Û¾Ù¥øÿÿÿÿ
+O
+squid:S106Y"9Replace this use of System.out or System.err by a logger.(®Á¤™

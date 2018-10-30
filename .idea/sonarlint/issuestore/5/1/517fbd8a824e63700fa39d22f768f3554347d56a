@@ -1,0 +1,19 @@
+
+Hsquid:S1612C",Replace this lambda with a method reference.(ğ½…Ãıÿÿÿÿ
+Qsquid:S1611A"5Remove the parentheses around the "command" parameter(úå¿…ÿÿÿÿÿ
+Lsquid:S1611G"5Remove the parentheses around the "command" parameter(°Ö¬
+Isquid:S1444E"3Make this "public static isMoveCommand" field final(ÕÖ¬t
+Csquid:S1612G",Replace this lambda with a method reference.(°Ö¬
+Ksquid:S1611"/Remove the parentheses around the "p" parameter(´ËØüÿÿÿÿ
+Qsquid:S1118":Add a private constructor to hide the implicit public one.(ìã­
+Qsquid:S1444C"5Make this "public static isReportCommand" field final(ğ½…Ãıÿÿÿÿ
+†"squid:ClassVariableVisibilityCheckE"YMake isMoveCommand a static final constant or non-public and provide accessors if needed.(ÕÖ¬t
+"squid:ClassVariableVisibilityCheckC"[Make isReportCommand a static final constant or non-public and provide accessors if needed.(ğ½…Ãıÿÿÿÿ
+U"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(‡ıÃäıÿÿÿÿ
+ˆ"squid:ClassVariableVisibilityCheckG"ZMake isPlaceCommand a static final constant or non-public and provide accessors if needed.(°Ö¬
+Qsquid:S1611C"5Remove the parentheses around the "command" parameter(ğ½…Ãıÿÿÿÿ
+Œ"squid:ClassVariableVisibilityCheckA"YMake isTurnCommand a static final constant or non-public and provide accessors if needed.(úå¿…ÿÿÿÿÿ
+Ksquid:S1444G"4Make this "public static isPlaceCommand" field final(°Ö¬
+Osquid:S1444A"3Make this "public static isTurnCommand" field final(úå¿…ÿÿÿÿÿ
+Bsquid:S1612E",Replace this lambda with a method reference.(ÕÖ¬t
+Ksquid:S1611E"5Remove the parentheses around the "command" parameter(ÕÖ¬t
