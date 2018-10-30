@@ -30,7 +30,7 @@ public class RobotScanner {
             if ("exit".equalsIgnoreCase(read) || "q".equalsIgnoreCase(read)) {
                 break;
             }
-            input += read.toUpperCase();
+            input += "\n"+read.toUpperCase();
             System.out.println("input : " + input);
         }
         return input;

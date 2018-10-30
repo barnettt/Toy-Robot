@@ -16,3 +16,8 @@ java -jar target/toy-robot-sim-1.0-SNAPSHOT.jar keyboard
 type q or exit to end command entries
 
 ctrl-c to stop spring boot
+
+
+Issues
+
+Spring context not shutting down cleanly.

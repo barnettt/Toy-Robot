@@ -1,6 +1,4 @@
-.idea/
-.idea/sonarlint/
-target/
+.idea
+target
 toyrobotsim.iml
-.idea/workspace.xml
 tmp

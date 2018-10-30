@@ -30,17 +30,7 @@ public class Application implements CommandLineRunner {
     public static void main(String[] args) {
 
         app = new SpringApplication(Application.class);
-        app.run();
-    }
-
-    public static void exitApplication(ApplicationContext ctx, int returnCode) {
-        app.exit(ctx, new ExitCodeGenerator() {
-            @Override
-            public int getExitCode() {
-                return 0;
-            }
-        });
-
+        app.run(args);
     }
 
     @Bean
@@ -86,7 +76,7 @@ public class Application implements CommandLineRunner {
             e.printStackTrace();
 
         }
-        System.out.println("Toy Robot Simulator ... shutting down!!  \n\n");
+        System.out.println("Toy Robot Simulator ... shutting down!! \n\n");
 
     }
 }
